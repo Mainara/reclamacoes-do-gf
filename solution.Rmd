@@ -1,0 +1,54 @@
+---
+title: "R Notebook"
+output:
+  html_document: default
+  html_notebook: default
+---
+
+
+```{r warning=FALSE}
+
+library(tidyverse)
+library(stringr)
+
+#LEITURA DE DADOS
+reclamacoesAmostra <- read.csv("data/experimento-avaliacao-humana/amostra-10-de-reclamacoes.csv")
+avaliacoesTurma <- read.csv("data/experimento-avaliacao-humana/experimento-de-avaliacao.csv")
+
+listas.orgaos <- read.csv("data/reclamacoes-raw/links-listas-orgaos.csv")
+
+reclamacoes.raw <- read.csv("data/reclamacoes-raw/reclamacoes-raw.csv")
+```
+
+
+#Pré-processamento
+```{r}
+
+reclamacoes.raw <- reclamacoes.raw %>%  
+    mutate(comprimento_reclamacao = str_length(reclamacao))
+
+reclamacoes.raw <- reclamacoes.raw %>%
+                        mutate(comprimento_reclamacao = str_length(reclamacao),
+                        nome_orgao = str_split(link, "/") %>% map_chr(~ .[[5]]))
+
+
+```
+
+```{r}
+
+orgao.group <- reclamacoes.raw %>%
+                    group_by(nome_orgao) %>%
+                    summarise(media.palavras = median(comprimento_reclamacao))
+
+
+ggplot(orgao.group, aes(x=nome_orgao, 
+                               y=media.palavras)) +
+    geom_bar(stat="identity", binwidth = NULL) +
+    coord_flip()
+
+max(reclamacoes.raw$comprimento_reclamacao)
+
+write.csv(reclamacoes.raw$reclamacao[256])
+
+```
+

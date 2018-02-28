@@ -109,7 +109,6 @@ reclamacoes_l %>%
 
 ## Há relação entre o léxico e a precisão/erro?
 
-Agora um modelo para responder sua pergunta.
 
 ```{r}
 fit <- train(erro ~ lexico + nome_orgao,
@@ -124,6 +123,8 @@ ggplot(data = reclamacoes_l, aes(x = linear_model_pred,
     labs(x ="Predição", y ="Observado", title ="Erro observado vs predito.") +
     geom_point(colour = "blue") +
     geom_abline(colour = "red")
+
+
 ```
 
 

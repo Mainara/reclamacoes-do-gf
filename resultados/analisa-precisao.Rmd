@@ -117,9 +117,11 @@ summary(fit)
 
 coefficients(fit)
 anova(fit)
+
+tidy(fit, conf.int =T) 
 ```
 
 **Dica** - o texto de resultado que queremos produzir é algo como: 
 
-Regressão múltipla foi utilizada para analisar se VarIndep1 e VarIndep2 tem uma associação significativa com o erro na estimativa de instatisfação da reclemação. Os resultados da regressão indicam que um modelo com os 2 preditores no formato Erro = -0.2158169.insatisfação + -1.6882720.polaridade_normalizada + 7.37066 explicam XX,XX% da variância da variável de resposta (R2 = XX,XX). VarIndep1, medida como/em [unidade ou o que é o 0 e o que é 1] tem uma relação significativa com o erro (b = [yy,yy;  zz,zz], IC com 95%), assim como VarIndep2 medida como [unidade ou o que é o 0 e o que é 1] (b = [yy,yy;  zz,zz], IC com 95%). O aumento de 1 unidade de polaridade_normalizada produz uma mudança -1.68827 de erro.
+Regressão múltipla foi utilizada para analisar se insatisfação de avaliadores e léxico utilizado tem uma associação significativa com o erro na estimativa de instatisfação da reclemação. Os resultados da regressão indicam que um modelo com os 2 preditores no formato Erro = -0.22132.insatisfação + -0.16670.polaridade_normalizada + 2.31452 explicam 0.92% da variância da variável de resposta (R2 = 0.009921). Insatisfação , medida em nota de 1 à 5 tem uma relação significativa com o erro (b = [-0.415, -0.026], IC com 95%), assim como léxico medido como 0 ou 1 que representam a escolha ou não do léxico sentimento_sent (b = [-0.624, 0.291], IC com 95%). O aumento de 1 unidade de insatisfação produz uma mudança -0.2213196 de erro.
 

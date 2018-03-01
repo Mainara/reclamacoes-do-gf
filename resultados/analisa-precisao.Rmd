@@ -112,7 +112,7 @@ reclamacoes_l %>%
 Agora um modelo para responder sua pergunta.
 
 ```{r}
-fit <- lm(erro ~ insatisfação + polaridade_normalizada, data=reclamacoes_l)
+fit <- lm(erro ~ insatisfação + lexico, data=reclamacoes_l)
 summary(fit)
 
 coefficients(fit)
